@@ -1,14 +1,16 @@
 package com.kavage.weathermusic;
-
+/**
+Shane Kavage
+Weather Music - WeatherMusicMain.java
+This is the main view java file that creates the toolbar. Any tools/options code will be present here.
+It loads up the fragment and inserts it into the same view.
+ **/
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
@@ -27,16 +29,6 @@ public class WeatherMusicMain extends AppCompatActivity {
                     .add(R.id.container, new WeatherMusicMainFragment())
                     .commit();
         }
-
-       /* FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-      */
     }
 
     @Override

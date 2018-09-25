@@ -1,5 +1,10 @@
 package com.kavage.weathermusic;
-
+/**
+Shane Kavage
+Weather Music -WeatherMusicMainFragment.java
+This is the main engine of the code. It cuts up the JSONObject information into readable bits
+then loads those bits into textviews and displays the desired information.
+ **/
 import android.graphics.Typeface;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -8,22 +13,43 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextClock;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONObject;
 
-import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Timer;
 
 /**
  * A placeholder fragment containing a simple view.
- */
+ **/
 public class WeatherMusicMainFragment extends Fragment
 {
-    Typeface weatherFont;
 
+    TextClock clock;    //Clock to display the current time
+    Typeface weatherFont;   //To display the weather icon
+    Timer timeHandler; //To tick every minute, and hour
+
+    private  final static int INTERVAL = 1000 * 60; //Currently used to mean 1 minute
+    Handler mHandler = new Handler();
+
+    //Runs a task every minute from when it starts to update the views info.
+    Runnable mHandlerTask = new Runnable()
+    {
+        @Override
+        public void run()
+        {
+            updateInfo(getView());
+            mHandler.postDelayed(mHandlerTask, INTERVAL);
+        }
+    };
+
+    //Views for information
     TextView cityField;
     TextView updatedField;
     TextView detailsField;
@@ -39,8 +65,11 @@ public class WeatherMusicMainFragment extends Fragment
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+                             Bundle savedInstanceState)
+    {
+        //Sets the views in the xml to these views, allowing for the values to be changed
         View rootView = inflater.inflate(R.layout.fragment_weather_music_main, container, false);
+        clock = rootView.findViewById(R.id.textClock);
         cityField = rootView.findViewById(R.id.city_field);
         updatedField = rootView.findViewById(R.id.updated_field);
         detailsField = rootView.findViewById(R.id.details_field);
@@ -56,9 +85,16 @@ public class WeatherMusicMainFragment extends Fragment
     {
         super.onCreate(savedInstanceState);
         //weatherFont = Typeface.createFromAsset(getActivity().getAssets(), "Assets/fonts/weather.ttf");
-        updateWeatherData(new CityPreference(getActivity()).getCity());
+        //Begins the repeating task every minute from when it starts
+        startRepeatingTask();
+
     }
 
+    /**
+     * Purpose: Re-fetches the JSONObject with the city from the user input and sends it to update the textviews.
+     * Input: City
+     * Output: nothing/renders the textviews with the updated weather
+     */
     private void updateWeatherData(final String city)
     {
         new Thread(){
@@ -83,14 +119,21 @@ public class WeatherMusicMainFragment extends Fragment
         }.start();
     }
 
+    /**
+     * Purpose:Parses the JSONObject to display desired information.
+     * Input:JSONObject
+     * Output:nothing/updated textviews
+     */
     private void renderWeather(JSONObject json){
         try {
-            cityField.setText(json.getString("name").toUpperCase(Locale.US) +
+            cityField.setText(json.getString("name") +
                     ", " +
                     json.getJSONObject("sys").getString("country"));
 
+            //Searches different arrays or object parameters for values.
             JSONObject details = json.getJSONArray("weather").getJSONObject(0);
             JSONObject main = json.getJSONObject("main");
+
             detailsField.setText(
                     details.getString("description").toUpperCase(Locale.US) +
                             "\n" + "Humidity: " + main.getString("humidity") + "%" +
@@ -99,9 +142,12 @@ public class WeatherMusicMainFragment extends Fragment
             currentTemperatureField.setText(
                     String.format("%.2f", main.getDouble("temp"))+ " F°");
 
-            DateFormat df = DateFormat.getDateTimeInstance();
-            String updatedOn = df.format(new Date(json.getLong("dt")*1000));
-            updatedField.setText("Last update: " + updatedOn);
+
+            Calendar calendar = Calendar.getInstance();
+            SimpleDateFormat mdformat = new SimpleDateFormat("HH:mm:ss");
+            String time =  mdformat.format(calendar.getTime());
+
+            updatedField.setText("Last update: " + time);
 
             setWeatherIcon(details.getInt("id"),
                     json.getJSONObject("sys").getLong("sunrise") * 1000,
@@ -144,5 +190,10 @@ public class WeatherMusicMainFragment extends Fragment
     public void changeCity(String city){
         updateWeatherData(city);
     }
+
+    public void updateInfo(View view) { updateWeatherData(new CityPreference(getActivity()).getCity());}
+
+    public void startRepeatingTask() { mHandlerTask.run();}
+    public void stopRepeatingTask() { mHandler.removeCallbacks(mHandlerTask);}
 
 }
