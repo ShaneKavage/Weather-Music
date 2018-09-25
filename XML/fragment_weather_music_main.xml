@@ -7,12 +7,33 @@
     tools:context=".WeatherMusicMainFragment"
     tools:showIn="@layout/activity_weather_music_main">
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="29dp"
+        android:layout_marginEnd="18dp"
+        android:clickable="true"
+        app:srcCompat="@mipmap/ic_launcher" />
+
+    <TextClock
+        android:id="@+id/textClock"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:format12Hour="hh:mm:ss a"
+        android:layout_marginTop="57dp" />
+
     <TextView
         android:id="@+id/city_field"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="194dp"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
