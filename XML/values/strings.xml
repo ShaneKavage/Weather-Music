@@ -1,0 +1,51 @@
+<resources>
+    <string name="app_name">Weather Music</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="change_city">Change city</string>
+    <string name="mute">Mute</string>
+
+    <!-- Put your own APP ID here -->
+    <string name="open_weather_maps_app_id">a743b8642aa8c0080c5fd810212761d8</string>
+
+    <string name="wi_day_sunny">&#xf00d;</string>
+    <string name="wi_day_cloudy">&#xf002;</string>
+    <string name="wi_day_fog">&#xf003;</string>
+    <string name="wi_day_hail">&#xf004;</string>
+    <string name="wi_day_haze">&#xf0b6;</string>
+    <string name="wi_day_lightning">&#xf005;</string>
+    <string name="wi_day_rain">&#xf008;</string>
+    <string name="wi_day_sleet">&#xf0b2;</string>
+    <string name="wi_day_snow">&#xf00a;</string>
+    <string name="wi_day_sprinkle">&#xf00b;</string>
+    <string name="wi_day_storm_showers">&#xf00e;</string>
+    <string name="wi_day_sunny_overcast">&#xf00c;</string>
+    <string name="wi_day_thunderstorm">&#xf010;</string>
+
+    <string name="wi_night_clear">&#xf02e;</string>
+    <string name="wi_night_alt_cloudy">&#xf086;</string>
+    <string name="wi_night_alt_hail">&#xf024;</string>
+    <string name="wi_night_alt_lightning">&#xf025;</string>
+    <string name="wi_night_alt_rain">&#xf028;</string>
+    <string name="wi_night_alt_sleet">&#xf0b4;</string>
+    <string name="wi_night_alt_snow">&#xf02a;</string>
+    <string name="wi_night_alt_sprinkle">&#xf02b;</string>
+    <string name="wi_night_alt_storm_showers">&#xf02c;</string>
+    <string name="wi_night_alt_thunderstorm">&#xf02d;</string>
+
+    <string name="wi_time_1">&#xf08a;</string>
+    <string name="wi_time_2">&#xf08b;</string>
+    <string name="wi_time_3">&#xf08c;</string>
+    <string name="wi_time_4">&#xf08d;</string>
+    <string name="wi_time_5">&#xf08e;</string>
+    <string name="wi_time_6">&#xf08f;</string>
+    <string name="wi_time_7">&#xf090;</string>
+    <string name="wi_time_8">&#xf091;</string>
+    <string name="wi_time_9">&#xf092;</string>
+    <string name="wi_time_10">&#xf093;</string>
+    <string name="wi_time_11">&#xf094;</string>
+    <string name="wi_time_12">&#xf089;</string>
+
+    <string name="place_not_found">Sorry, no weather data found.</string>
+
+</resources>
