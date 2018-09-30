@@ -10,10 +10,10 @@ import android.content.SharedPreferences;
 
 public class CityPreference {
 
-    SharedPreferences prefs;
+    protected SharedPreferences prefs;
 
     //Grabs the prefs to be read and altered
-    public CityPreference(Activity activity)
+    protected CityPreference(Activity activity)
     {
         prefs = activity.getPreferences(Activity.MODE_PRIVATE);
     }
@@ -26,7 +26,7 @@ public class CityPreference {
 
     //Saves the city in the prefs so it can be automatically loaded when the app opens
     void setCity(String city){
-        prefs.edit().putString("city", city).commit();
+        prefs.edit().putString("city", city).apply();
     }
 
 }

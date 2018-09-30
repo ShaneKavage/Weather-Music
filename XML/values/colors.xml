@@ -3,4 +3,9 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="ShadowColor">#4d435e</color>
+    <color name="FAMcolor">#212f7c</color>
+    <color name="FABcolor">#ace0f9</color>
+    <color name="FAMpressed">#293060</color>
+    <color name="FABpressed">#779fb2</color>
 </resources>

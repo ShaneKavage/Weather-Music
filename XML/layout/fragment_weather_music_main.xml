@@ -1,49 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fragBackground"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/graybackground"
-    android:orientation="vertical">
+    android:background="@drawable/graybackground">
 
-    <TextView
-        android:id="@+id/city_field"
+    <ImageView
+        android:id="@+id/fragBlurView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1.1"
-        android:textAlignment="center"
-        android:textAppearance="@android:style/TextAppearance.Medium" />
+        app:srcCompat="@drawable/blur" />
 
-    <TextView
-        android:id="@+id/weather_icon"
+    <LinearLayout
+        android:id="@+id/weatherFrag"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:textAlignment="center"
-        android:textAppearance="@android:style/TextAppearance.Medium"
-        android:textSize="30sp" />
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/details_field"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:textAlignment="center"
-        android:textAppearance="@android:style/TextAppearance.Medium" />
+        <TextView
+            android:id="@+id/city_field"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1.1"
+            android:textAlignment="center"
+            android:textAppearance="@android:style/TextAppearance.Medium" />
 
-    <TextView
-        android:id="@+id/current_temperature_field"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:textAlignment="center"
-        android:textAppearance="@android:style/TextAppearance.Medium"
-        android:textSize="30sp" />
+        <TextView
+            android:id="@+id/weather_icon"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1.1"
+            android:textAlignment="center"
+            android:textAppearance="@android:style/TextAppearance.Medium"
+            android:textSize="30sp" />
 
-    <TextView
-        android:id="@+id/updated_field"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:textAlignment="center"
-        android:textAppearance="@android:style/TextAppearance.Medium" />
-</LinearLayout>
+        <TextView
+            android:id="@+id/details_field"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1.1"
+            android:textAlignment="center"
+            android:textAppearance="@android:style/TextAppearance.Medium" />
+
+        <TextView
+            android:id="@+id/current_temperature_field"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1.1"
+            android:textAlignment="center"
+            android:textAppearance="@android:style/TextAppearance.Medium"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/updated_field"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1.1"
+            android:textAlignment="center"
+            android:textAppearance="@android:style/TextAppearance.Medium" />
+    </LinearLayout>
+
+</FrameLayout>

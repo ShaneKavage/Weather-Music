@@ -5,36 +5,18 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FF0099CC"
     tools:context=".WeatherMusicMain">
 
     <TextClock
         android:id="@+id/textClock"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
         android:format12Hour="hh:mm:ss a"
         android:gravity="top|center"
         android:textAlignment="center" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/floatingActionButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:clickable="true"
-        android:focusable="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.948"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.969" />
-
     <fragment
-        android:id="@+id/fragment"
+        android:id="@+id/weatherFragment"
         android:name="com.kavage.weathermusic.WeatherMusicMainFragment"
         android:layout_width="200dp"
         android:layout_height="250dp"
@@ -44,10 +26,112 @@
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.205" />
+        app:layout_constraintVertical_bias="0.235" />
 
+    <ImageView
+        android:id="@+id/blurView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="false"
+        android:background="@drawable/blur"
+        android:cropToPadding="false"
+        android:visibility="visible" />
+
+    <com.github.clans.fab.FloatingActionMenu
+        android:id="@+id/floatingActionMenu"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha=".85"
+        android:clickable="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:foregroundGravity="bottom|right"
+        android:paddingBottom="@dimen/fab_margin"
+        android:paddingEnd="@dimen/fab_margin"
+        android:soundEffectsEnabled="true"
+        app:menu_colorNormal="@color/FAMcolor"
+        app:menu_colorPressed="@color/FAMpressed"
+        app:menu_fab_label="Actions"
+        app:menu_icon="@drawable/menuicon"
+        app:menu_labels_ellipsize="marquee"
+        app:menu_labels_position="left"
+        app:menu_openDirection="up"
+        app:menu_shadowColor="@color/colorPrimaryDark"
+        app:menu_showShadow="true">
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/optionsFab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha=".85"
+            android:scaleType="fitXY"
+            android:src="@drawable/optionsicon"
+            app:fab_colorNormal="@color/FABcolor"
+            app:fab_label="Options"
+            app:fab_size="mini"
+            app:menu_colorPressed="#3c67ad"
+            tools:layout_editor_absoluteX="310dp"
+            tools:layout_editor_absoluteY="427dp" />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/ChangeCityFab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha=".85"
+            android:scaleType="fitXY"
+            android:src="@drawable/cityicon"
+            app:fab_colorNormal="@color/FABcolor"
+            app:fab_label="Change City"
+            app:fab_size="mini"
+            app:menu_colorPressed="#8296b7"
+            tools:layout_editor_absoluteX="310dp"
+            tools:layout_editor_absoluteY="427dp" />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/visionFab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha=".85"
+            android:scaleType="fitXY"
+            android:src="@drawable/invisibleicon"
+            app:fab_colorNormal="@color/FABcolor"
+            app:fab_label="Hide Weather"
+            app:fab_size="mini"
+            app:menu_colorPressed="#3c67ad"
+            tools:layout_editor_absoluteX="310dp"
+            tools:layout_editor_absoluteY="427dp" />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/muteFab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha=".85"
+            android:scaleType="fitXY"
+            android:src="@drawable/muteicon"
+            app:fab_colorNormal="@color/FABcolor"
+            app:fab_label="Mute"
+            app:fab_size="mini"
+            app:menu_colorPressed="#3c67ad"
+            tools:layout_editor_absoluteX="310dp"
+            tools:layout_editor_absoluteY="427dp" />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/RefreshFab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha=".85"
+            android:scaleType="fitXY"
+            android:src="@drawable/refreshicon"
+            app:fab_colorNormal="@color/FABcolor"
+            app:fab_label="Refresh"
+            app:fab_size="mini"
+            app:menu_colorPressed="#3c67ad"
+            app:menu_colorRipple="#5a3496"
+            tools:layout_editor_absoluteX="310dp"
+            tools:layout_editor_absoluteY="427dp" />
+
+    </com.github.clans.fab.FloatingActionMenu>
 
 </android.support.constraint.ConstraintLayout>

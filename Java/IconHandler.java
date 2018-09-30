@@ -7,38 +7,39 @@ package com.kavage.weathermusic;
 
 import android.app.Activity;
 
-import java.util.Date;
+import com.kavage.weathermusic.TimeHandler.DayTime;
+import com.kavage.weathermusic.TimeHandler.TimeOfDay;
 
 public class IconHandler
 {
-
-    public String updateIcon(Activity act, int actualId, long sunrise, long sunset) {
-        int id = actualId;
-        String icon = "";
-        long currentTime = new Date().getTime();
+    public String updateIcon(Activity act, int code) {
+        String icon;
+        TimeOfDay currentTime = new TimeOfDay();
 
         //Daytime icon switch
-        if(currentTime>=sunrise && currentTime<sunset)
+        if( (currentTime.getTimeOfDay()  != DayTime.DAWN &&
+                currentTime.getTimeOfDay()  != DayTime.EARLYMORNING &&
+                currentTime.getTimeOfDay()  != DayTime.MORNING &&
+                currentTime.getTimeOfDay()  != DayTime.NOON &&
+                currentTime.getTimeOfDay()  != DayTime.AFTERNOON &&
+                currentTime.getTimeOfDay()  != DayTime.EVENING) )
         {
-            switch(id)
+            switch(code)
             {
-                case 1: icon = act.getString(R.string.wi_night_clear); //Not found
-                    break;
-
                 //Thunderstorms
                 case 200: icon = act.getString(R.string.wi_day_thunderstorm); //thunderstorm with light rain
                     break;
                 case 201: icon = act.getString(R.string.wi_day_thunderstorm); //thunderstorm with rain
                     break;
-                case 202: icon = act.getString(R.string.wi_day_thunderstorm); //thunderstorm with heavy rain
+                case 202: icon = act.getString(R.string.wi_day_lightning); //thunderstorm with heavy rain
                     break;
                 case 210: icon = act.getString(R.string.wi_day_thunderstorm); //light thunderstorm
                     break;
                 case 211: icon = act.getString(R.string.wi_day_thunderstorm); //thunderstorm
                     break;
-                case 212: icon = act.getString(R.string.wi_day_thunderstorm); //heavy thunderstorm
+                case 212: icon = act.getString(R.string.wi_day_lightning); //heavy thunderstorm
                     break;
-                case 221: icon = act.getString(R.string.wi_day_thunderstorm); //ragged thunderstorm
+                case 221: icon = act.getString(R.string.wi_day_lightning); //ragged thunderstorm
                     break;
                 case 230: icon = act.getString(R.string.wi_day_thunderstorm); //thunderstorm with light drizzle
                     break;
@@ -48,241 +49,236 @@ public class IconHandler
                     break;
 
                     //Drizzles
-                case 300: icon = act.getString(R.string.wi_day_rain); //light intensity drizzle
+                case 300: icon = act.getString(R.string.wi_day_sprinkle); //light intensity drizzle
                     break;
-                case 301: icon = act.getString(R.string.wi_day_rain); //drizzle
+                case 301: icon = act.getString(R.string.wi_day_sprinkle); //drizzle
                     break;
-                case 302: icon = act.getString(R.string.wi_day_rain); //heavy intensity drizzle
+                case 302: icon = act.getString(R.string.wi_day_sprinkle); //heavy intensity drizzle
                     break;
-                case 310: icon = act.getString(R.string.wi_day_rain); //light intensity drizzle rain
+                case 310: icon = act.getString(R.string.wi_day_sprinkle); //light intensity drizzle rain
                     break;
-                case 311: icon = act.getString(R.string.wi_day_rain); //drizzle rain
+                case 311: icon = act.getString(R.string.wi_day_sprinkle); //drizzle rain
                     break;
-                case 312: icon = act.getString(R.string.wi_day_rain); //heavy intensity drizzle rain
+                case 312: icon = act.getString(R.string.wi_day_sprinkle); //heavy intensity drizzle rain
                     break;
-                case 313: icon = act.getString(R.string.wi_day_rain); //shower rain and drizzle
+                case 313: icon = act.getString(R.string.wi_day_sprinkle); //shower rain and drizzle
                     break;
-                case 314: icon = act.getString(R.string.wi_day_rain); //heavy shower rain and drizzle
+                case 314: icon = act.getString(R.string.wi_day_sprinkle); //heavy shower rain and drizzle
                     break;
-                case 321: icon = act.getString(R.string.wi_day_rain); //shower drizzle
-                    break;
-
-                case 4: icon = act.getString(R.string.wi_day_fog);
+                case 321: icon = act.getString(R.string.wi_day_sprinkle); //shower drizzle
                     break;
 
                 //Rain
-                case 500: icon = act.getString(R.string.wi_day_cloudy); //light rain
+                case 500: icon = act.getString(R.string.wi_day_rain); //light rain
                     break;
-                case 501: icon = act.getString(R.string.wi_day_cloudy); //moderate rain
+                case 501: icon = act.getString(R.string.wi_day_rain); //moderate rain
                     break;
-                case 502: icon = act.getString(R.string.wi_day_cloudy); //heavy intensity rain
+                case 502: icon = act.getString(R.string.wi_day_rain); //heavy intensity rain
                     break;
-                case 503: icon = act.getString(R.string.wi_day_cloudy); //very heavy rain
+                case 503: icon = act.getString(R.string.wi_day_rain); //very heavy rain
                     break;
-                case 504: icon = act.getString(R.string.wi_day_cloudy); //extreme rain
+                case 504: icon = act.getString(R.string.wi_day_rain); //extreme rain
                     break;
-                case 511: icon = act.getString(R.string.wi_day_cloudy); //freezing rain
+                case 511: icon = act.getString(R.string.wi_day_rain); //freezing rain
                     break;
-                case 520: icon = act.getString(R.string.wi_day_cloudy); //light intensity shower rain
+                case 520: icon = act.getString(R.string.wi_day_rain); //light intensity shower rain
                     break;
-                case 521: icon = act.getString(R.string.wi_day_cloudy); //shower rain
+                case 521: icon = act.getString(R.string.wi_day_rain); //shower rain
                     break;
-                case 522: icon = act.getString(R.string.wi_day_cloudy); //heavy intensity shower rain
+                case 522: icon = act.getString(R.string.wi_day_rain); //heavy intensity shower rain
                     break;
-                case 531: icon = act.getString(R.string.wi_day_cloudy); //ragged shower rain
+                case 531: icon = act.getString(R.string.wi_day_rain); //ragged shower rain
                     break;
 
                     //Snow
-                case 600: icon = act.getString(R.string.wi_day_lightning); //light snow
+                case 600: icon = act.getString(R.string.wi_day_snow); //light snow
                     break;
-                case 601: icon = act.getString(R.string.wi_day_lightning); //Snow
+                case 601: icon = act.getString(R.string.wi_day_snow); //Snow
                     break;
-                case 602: icon = act.getString(R.string.wi_day_lightning); //heavy snow
+                case 602: icon = act.getString(R.string.wi_day_snow); //heavy snow
                     break;
-                case 611: icon = act.getString(R.string.wi_day_lightning); //sleet
+                case 611: icon = act.getString(R.string.wi_day_snow); //sleet
                     break;
-                case 612: icon = act.getString(R.string.wi_day_lightning); //shower sleet
+                case 612: icon = act.getString(R.string.wi_day_snow); //shower sleet
                     break;
-                case 615: icon = act.getString(R.string.wi_day_lightning); //light rain and snow
+                case 615: icon = act.getString(R.string.wi_day_snow); //light rain and snow
                     break;
-                case 616: icon = act.getString(R.string.wi_day_lightning); //rain and snow
+                case 616: icon = act.getString(R.string.wi_day_snow); //rain and snow
                     break;
-                case 620: icon = act.getString(R.string.wi_day_lightning); //light shower snow
+                case 620: icon = act.getString(R.string.wi_day_snow); //light shower snow
                     break;
-                case 621: icon = act.getString(R.string.wi_day_lightning); //shower snow
+                case 621: icon = act.getString(R.string.wi_day_snow); //shower snow
                     break;
-                case 622: icon = act.getString(R.string.wi_day_lightning); //heavy shower snow
+                case 622: icon = act.getString(R.string.wi_day_snow); //heavy shower snow
                     break;
 
                 //Atmosphere
                 case 701: icon = act.getString(R.string.wi_day_haze); //Mist
                     break;
-                case 711: icon = act.getString(R.string.wi_day_haze); //smoke
+                case 711: icon = act.getString(R.string.wi_smoke); //smoke
                     break;
                 case 721: icon = act.getString(R.string.wi_day_haze); //haze
                     break;
-                case 731: icon = act.getString(R.string.wi_day_haze); //sand, dust whirls
+                case 731: icon = act.getString(R.string.wi_dust); //sand, dust whirls
                     break;
-                case 741: icon = act.getString(R.string.wi_day_haze); //fog
+                case 741: icon = act.getString(R.string.wi_day_fog); //fog
                     break;
-                case 751: icon = act.getString(R.string.wi_day_haze); //sand
+                case 751: icon = act.getString(R.string.wi_dust); //sand
                     break;
-                case 761: icon = act.getString(R.string.wi_day_haze); //dust
+                case 761: icon = act.getString(R.string.wi_dust); //dust
                     break;
-                case 762: icon = act.getString(R.string.wi_day_haze); //volcanic ash
+                case 762: icon = act.getString(R.string.wi_dust); //volcanic ash
                     break;
-                case 771: icon = act.getString(R.string.wi_day_haze); //squalls
+                case 771: icon = act.getString(R.string.wi_windy); //squalls
                     break;
-                case 781: icon = act.getString(R.string.wi_day_haze); //tornado
+                case 781: icon = act.getString(R.string.wi_solar_eclipse); //tornado
                     break;
 
                 //Clear
-                case 800: icon = act.getString(R.string.wi_day_snow); //Clear
+                case 800: icon = act.getString(R.string.wi_day_sunny); //Clear
                     break;
 
                     //Clouds
-                case 801: icon = act.getString(R.string.wi_day_sprinkle); //Few clouds
+                case 801: icon = act.getString(R.string.wi_day_cloudy); //Few clouds
                     break;
-                case 802: icon = act.getString(R.string.wi_day_sprinkle); //scattered clouds
+                case 802: icon = act.getString(R.string.wi_cloudy); //scattered clouds
                     break;
-                case 803: icon = act.getString(R.string.wi_day_sprinkle); //broken clouds
+                case 803: icon = act.getString(R.string.wi_cloudy); //broken clouds
                     break;
-                case 804: icon = act.getString(R.string.wi_day_sprinkle); //overcast clouds
+                case 804: icon = act.getString(R.string.wi_day_sunny_overcast); //overcast clouds
                     break;
+
+                    default: icon = act.getString(R.string.wi_na);
             }
         }
         //Nighttime icon switch
         else
         {
-            switch(id)
+            switch(code)
             {
-                case 1: icon = act.getString(R.string.wi_night_clear); //Not found
-                    break;
-
                 //Thunderstorms
-                case 200: icon = act.getString(R.string.wi_day_thunderstorm); //thunderstorm with light rain
+                case 200: icon = act.getString(R.string.wi_night_alt_thunderstorm); //thunderstorm with light rain
                     break;
-                case 201: icon = act.getString(R.string.wi_day_thunderstorm); //thunderstorm with rain
+                case 201: icon = act.getString(R.string.wi_night_alt_thunderstorm); //thunderstorm with rain
                     break;
-                case 202: icon = act.getString(R.string.wi_day_thunderstorm); //thunderstorm with heavy rain
+                case 202: icon = act.getString(R.string.wi_night_alt_lightning); //thunderstorm with heavy rain
                     break;
-                case 210: icon = act.getString(R.string.wi_day_thunderstorm); //light thunderstorm
+                case 210: icon = act.getString(R.string.wi_night_alt_thunderstorm); //light thunderstorm
                     break;
-                case 211: icon = act.getString(R.string.wi_day_thunderstorm); //thunderstorm
+                case 211: icon = act.getString(R.string.wi_night_alt_thunderstorm); //thunderstorm
                     break;
-                case 212: icon = act.getString(R.string.wi_day_thunderstorm); //heavy thunderstorm
+                case 212: icon = act.getString(R.string.wi_night_alt_lightning); //heavy thunderstorm
                     break;
-                case 221: icon = act.getString(R.string.wi_day_thunderstorm); //ragged thunderstorm
+                case 221: icon = act.getString(R.string.wi_night_alt_lightning); //ragged thunderstorm
                     break;
-                case 230: icon = act.getString(R.string.wi_day_thunderstorm); //thunderstorm with light drizzle
+                case 230: icon = act.getString(R.string.wi_night_alt_thunderstorm); //thunderstorm with light drizzle
                     break;
-                case 231: icon = act.getString(R.string.wi_day_thunderstorm); //thunderstorm with drizzle
+                case 231: icon = act.getString(R.string.wi_night_alt_thunderstorm); //thunderstorm with drizzle
                     break;
-                case 232: icon = act.getString(R.string.wi_day_thunderstorm); //thunderstorm with heavy drizzle
+                case 232: icon = act.getString(R.string.wi_night_alt_lightning); //thunderstorm with heavy drizzle
                     break;
 
                 //Drizzles
-                case 300: icon = act.getString(R.string.wi_day_rain); //light intensity drizzle
+                case 300: icon = act.getString(R.string.wi_night_alt_sprinkle); //light intensity drizzle
                     break;
-                case 301: icon = act.getString(R.string.wi_day_rain); //drizzle
+                case 301: icon = act.getString(R.string.wi_night_alt_sprinkle); //drizzle
                     break;
-                case 302: icon = act.getString(R.string.wi_day_rain); //heavy intensity drizzle
+                case 302: icon = act.getString(R.string.wi_night_alt_sprinkle); //heavy intensity drizzle
                     break;
-                case 310: icon = act.getString(R.string.wi_day_rain); //light intensity drizzle rain
+                case 310: icon = act.getString(R.string.wi_night_alt_sprinkle); //light intensity drizzle rain
                     break;
-                case 311: icon = act.getString(R.string.wi_day_rain); //drizzle rain
+                case 311: icon = act.getString(R.string.wi_night_alt_sprinkle); //drizzle rain
                     break;
-                case 312: icon = act.getString(R.string.wi_day_rain); //heavy intensity drizzle rain
+                case 312: icon = act.getString(R.string.wi_night_alt_sprinkle); //heavy intensity drizzle rain
                     break;
-                case 313: icon = act.getString(R.string.wi_day_rain); //shower rain and drizzle
+                case 313: icon = act.getString(R.string.wi_night_alt_sprinkle); //shower rain and drizzle
                     break;
-                case 314: icon = act.getString(R.string.wi_day_rain); //heavy shower rain and drizzle
+                case 314: icon = act.getString(R.string.wi_night_alt_sprinkle); //heavy shower rain and drizzle
                     break;
-                case 321: icon = act.getString(R.string.wi_day_rain); //shower drizzle
-                    break;
-
-                case 4: icon = act.getString(R.string.wi_day_fog);
+                case 321: icon = act.getString(R.string.wi_night_alt_sprinkle); //shower drizzle
                     break;
 
                 //Rain
-                case 500: icon = act.getString(R.string.wi_day_cloudy); //light rain
+                case 500: icon = act.getString(R.string.wi_night_alt_rain); //light rain
                     break;
-                case 501: icon = act.getString(R.string.wi_day_cloudy); //moderate rain
+                case 501: icon = act.getString(R.string.wi_night_alt_rain); //moderate rain
                     break;
-                case 502: icon = act.getString(R.string.wi_day_cloudy); //heavy intensity rain
+                case 502: icon = act.getString(R.string.wi_night_alt_rain); //heavy intensity rain
                     break;
-                case 503: icon = act.getString(R.string.wi_day_cloudy); //very heavy rain
+                case 503: icon = act.getString(R.string.wi_night_alt_rain); //very heavy rain
                     break;
-                case 504: icon = act.getString(R.string.wi_day_cloudy); //extreme rain
+                case 504: icon = act.getString(R.string.wi_night_alt_rain); //extreme rain
                     break;
-                case 511: icon = act.getString(R.string.wi_day_cloudy); //freezing rain
+                case 511: icon = act.getString(R.string.wi_night_alt_rain); //freezing rain
                     break;
-                case 520: icon = act.getString(R.string.wi_day_cloudy); //light intensity shower rain
+                case 520: icon = act.getString(R.string.wi_night_alt_rain); //light intensity shower rain
                     break;
-                case 521: icon = act.getString(R.string.wi_day_cloudy); //shower rain
+                case 521: icon = act.getString(R.string.wi_night_alt_rain); //shower rain
                     break;
-                case 522: icon = act.getString(R.string.wi_day_cloudy); //heavy intensity shower rain
+                case 522: icon = act.getString(R.string.wi_night_alt_rain); //heavy intensity shower rain
                     break;
-                case 531: icon = act.getString(R.string.wi_day_cloudy); //ragged shower rain
+                case 531: icon = act.getString(R.string.wi_night_alt_rain); //ragged shower rain
                     break;
 
                 //Snow
-                case 600: icon = act.getString(R.string.wi_day_lightning); //light snow
+                case 600: icon = act.getString(R.string.wi_night_alt_snow); //light snow
                     break;
-                case 601: icon = act.getString(R.string.wi_day_lightning); //Snow
+                case 601: icon = act.getString(R.string.wi_night_alt_snow); //Snow
                     break;
-                case 602: icon = act.getString(R.string.wi_day_lightning); //heavy snow
+                case 602: icon = act.getString(R.string.wi_night_alt_snow); //heavy snow
                     break;
-                case 611: icon = act.getString(R.string.wi_day_lightning); //sleet
+                case 611: icon = act.getString(R.string.wi_night_alt_snow); //sleet
                     break;
-                case 612: icon = act.getString(R.string.wi_day_lightning); //shower sleet
+                case 612: icon = act.getString(R.string.wi_night_alt_snow); //shower sleet
                     break;
-                case 615: icon = act.getString(R.string.wi_day_lightning); //light rain and snow
+                case 615: icon = act.getString(R.string.wi_night_alt_snow); //light rain and snow
                     break;
-                case 616: icon = act.getString(R.string.wi_day_lightning); //rain and snow
+                case 616: icon = act.getString(R.string.wi_night_alt_snow); //rain and snow
                     break;
-                case 620: icon = act.getString(R.string.wi_day_lightning); //light shower snow
+                case 620: icon = act.getString(R.string.wi_night_alt_snow); //light shower snow
                     break;
-                case 621: icon = act.getString(R.string.wi_day_lightning); //shower snow
+                case 621: icon = act.getString(R.string.wi_night_alt_snow); //shower snow
                     break;
-                case 622: icon = act.getString(R.string.wi_day_lightning); //heavy shower snow
+                case 622: icon = act.getString(R.string.wi_night_alt_snow); //heavy shower snow
                     break;
 
                 //Atmosphere
                 case 701: icon = act.getString(R.string.wi_day_haze); //Mist
                     break;
-                case 711: icon = act.getString(R.string.wi_day_haze); //smoke
+                case 711: icon = act.getString(R.string.wi_smoke); //smoke
                     break;
                 case 721: icon = act.getString(R.string.wi_day_haze); //haze
                     break;
-                case 731: icon = act.getString(R.string.wi_day_haze); //sand, dust whirls
+                case 731: icon = act.getString(R.string.wi_dust); //sand, dust whirls
                     break;
-                case 741: icon = act.getString(R.string.wi_day_haze); //fog
+                case 741: icon = act.getString(R.string.wi_night_fog); //fog
                     break;
-                case 751: icon = act.getString(R.string.wi_day_haze); //sand
+                case 751: icon = act.getString(R.string.wi_dust); //sand
                     break;
-                case 761: icon = act.getString(R.string.wi_day_haze); //dust
+                case 761: icon = act.getString(R.string.wi_dust); //dust
                     break;
-                case 762: icon = act.getString(R.string.wi_day_haze); //volcanic ash
+                case 762: icon = act.getString(R.string.wi_dust); //volcanic ash
                     break;
-                case 771: icon = act.getString(R.string.wi_day_haze); //squalls
+                case 771: icon = act.getString(R.string.wi_raindrop); //squalls
                     break;
-                case 781: icon = act.getString(R.string.wi_day_haze); //tornado
+                case 781: icon = act.getString(R.string.wi_solar_eclipse); //tornado
                     break;
 
                 //Clear
-                case 800: icon = act.getString(R.string.wi_day_snow); //Clear
+                case 800: icon = act.getString(R.string.wi_night_clear); //Clear
                     break;
 
                 //Clouds
-                case 801: icon = act.getString(R.string.wi_day_sprinkle); //Few clouds
+                case 801: icon = act.getString(R.string.wi_night_alt_cloudy); //Few clouds
                     break;
-                case 802: icon = act.getString(R.string.wi_day_sprinkle); //scattered clouds
+                case 802: icon = act.getString(R.string.wi_night_alt_cloudy); //scattered clouds
                     break;
-                case 803: icon = act.getString(R.string.wi_day_sprinkle); //broken clouds
+                case 803: icon = act.getString(R.string.wi_night_alt_partly_cloudy); //broken clouds
                     break;
-                case 804: icon = act.getString(R.string.wi_day_sprinkle); //overcast clouds
+                case 804: icon = act.getString(R.string.wi_night_alt_cloudy_high); //overcast clouds
                     break;
+
+                default: icon = act.getString(R.string.wi_na);
             }
         }
         return icon;

@@ -41,8 +41,8 @@ public class RemoteFetch
                     new InputStreamReader(connection.getInputStream()));
 
             //Fills the buffer with data from the query call.
-            StringBuffer json = new StringBuffer(1024);
-            String tmp="";
+            StringBuilder json = new StringBuilder(1024);
+            String tmp;
             while((tmp=reader.readLine())!=null)
                 json.append(tmp).append("\n");
             reader.close();
