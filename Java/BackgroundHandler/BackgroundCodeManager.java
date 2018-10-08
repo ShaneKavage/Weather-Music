@@ -4,7 +4,7 @@ import android.app.Activity;
 
 public class BackgroundCodeManager {
 
-    public void chooseHandler(Activity act, int code) {
+    public void chooseHandler(int code, Activity act) {
 
         int stormCode = code/100;
         ThunderBackgroundHandler TBH = new ThunderBackgroundHandler();
@@ -21,10 +21,10 @@ public class BackgroundCodeManager {
                 RBH.setBackground(act);
                 break;
             case 5:
-                RBH.setBackground(act);
+                SBH.setBackground(act);
                 break;
             case 6:
-                SBH.setBackground(act);
+                CBH.setBackground(act);
                 break;
             case 8:
                 if(code == 800) {

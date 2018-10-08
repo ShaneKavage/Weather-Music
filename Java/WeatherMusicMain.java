@@ -5,9 +5,10 @@ Weather Music - WeatherMusicMain.java
 This is the main view java file that creates the toolbar. Any tools/options code will be present here.
 It loads up the fragment and inserts it into the same view.
 
- 3Will need to break the blur functionality out into separate files
  **/
 import android.content.DialogInterface;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -16,38 +17,49 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
+import com.kavage.weathermusic.BlurrHandler.BlurBuilder;
+import com.kavage.weathermusic.MusicHandler.MusicManager;
+
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class WeatherMusicMain extends AppCompatActivity {
 
-    CityPreference city;
-    boolean isVisible = true;
-    boolean isMuted = false;
-    boolean isBlurred = false;
+     CityPreference city;
+     boolean isVisible = true, isMuted = false, isBlurred = false, isCached = false;
+     ImageView blurredBackground;
+     FloatingActionMenu fam;
+     int code;
+     MusicManager MM;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather_music_main);
         city = new CityPreference(this);
+        blurredBackground = findViewById(R.id.blurView);
+        //MM = new MusicManager();
 
-        FloatingActionMenu fam = findViewById(R.id.floatingActionMenu);
-        fam.setOnClickListener(new View.OnClickListener(){
+        fam = findViewById(R.id.floatingActionMenu);
+        fam.setClosedOnTouchOutside(true);
+        fam.setOnMenuToggleListener(new FloatingActionMenu.OnMenuToggleListener() {
             @Override
-            public void onClick(View view)
+            public void onMenuToggle(boolean opened)
             {
-                if(isBlurred)
-                {
-
-                }
-                else
-                {
-
+                if(isBlurred) {
+                    isBlurred = false;
+                    blurredBackground.setVisibility(View.INVISIBLE);
+                }else {
+                    isBlurred = true;
+                    takeBackgroundPicture();
                 }
             }
-
         });
 
         FloatingActionButton cityFab = findViewById(R.id.ChangeCityFab);
@@ -55,6 +67,7 @@ public class WeatherMusicMain extends AppCompatActivity {
             @Override
             public void onClick(View view)
             {
+                fam.close(true);
                 showInputDialog(view);
             }
         });
@@ -64,6 +77,7 @@ public class WeatherMusicMain extends AppCompatActivity {
             @Override
             public void onClick(View view)
             {
+                fam.close(true);
                 setCity(city.getCity());
             }
         });
@@ -73,11 +87,11 @@ public class WeatherMusicMain extends AppCompatActivity {
             @Override
             public void onClick(View view)
             {
-
+                fam.close(true);
             }
         });
 
-        FloatingActionButton visibleFab = findViewById(R.id.visionFab);
+        final FloatingActionButton visibleFab = findViewById(R.id.visionFab);
         visibleFab.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view)
@@ -92,10 +106,8 @@ public class WeatherMusicMain extends AppCompatActivity {
                             .commit();
 
                     isVisible = false;
-
-                    FloatingActionButton fabTemp = findViewById(R.id.visionFab);
-                    fabTemp.setImageResource(R.drawable.visibleicon);
-                    fabTemp.setLabelText("Show Weather");
+                    visibleFab.setImageResource(R.drawable.visibleicon);
+                    visibleFab.setLabelText("Show Weather");
 
                 }else
                 {
@@ -107,15 +119,13 @@ public class WeatherMusicMain extends AppCompatActivity {
                             .commit();
 
                     isVisible = true;
-
-                    FloatingActionButton fabTemp = findViewById(R.id.visionFab);
-                    fabTemp.setImageResource(R.drawable.invisibleicon);
-                    fabTemp.setLabelText("Hide Weather");
+                    visibleFab.setImageResource(R.drawable.invisibleicon);
+                    visibleFab.setLabelText("Hide Weather");
                 }
             }
         });
 
-        FloatingActionButton muteFab = findViewById(R.id.muteFab);
+        final FloatingActionButton muteFab = findViewById(R.id.muteFab);
         muteFab.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view)
@@ -123,18 +133,14 @@ public class WeatherMusicMain extends AppCompatActivity {
                 if(!isMuted)
                 {
                     isMuted = true;
-
-                    FloatingActionButton fabTemp = findViewById(R.id.muteFab);
-                    fabTemp.setImageResource(R.drawable.unmuteicon);
-                    fabTemp.setLabelText("Unmute");
+                    muteFab.setImageResource(R.drawable.unmuteicon);
+                    muteFab.setLabelText("Unmute");
 
                 }else
                 {
                     isMuted = false;
-
-                    FloatingActionButton fabTemp = findViewById(R.id.muteFab);
-                    fabTemp.setImageResource(R.drawable.muteicon);
-                    fabTemp.setLabelText("Mute");
+                    muteFab.setImageResource(R.drawable.muteicon);
+                    muteFab.setLabelText("Mute");
                 }
             }
         });
@@ -148,7 +154,8 @@ public class WeatherMusicMain extends AppCompatActivity {
         builder.setView(input);
         builder.setPositiveButton("Go", new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
+            public void onClick(DialogInterface dialog, int which)
+            {
                     setCity(input.getText().toString());
             }
         });
@@ -159,6 +166,35 @@ public class WeatherMusicMain extends AppCompatActivity {
         WeatherMusicMainFragment frag = (WeatherMusicMainFragment)
                 getSupportFragmentManager().findFragmentById(R.id.weatherFragment);
         frag.updateWeatherData(city);
+        if((frag.stormcode/100) != code)
+        {
+            code = frag.stormcode/100;
+            isCached = false;
+        }
+        takeBackgroundPicture();
         new CityPreference(this).setCity(city);
+    }
+
+    public void takeBackgroundPicture()
+    {
+        if(isBlurred)
+        {
+            if(!isCached)
+            {
+                fam.setVisibility(View.INVISIBLE);
+                findViewById(R.id.weatherFragment).setVisibility(View.INVISIBLE);
+                blurredBackground.setVisibility(View.INVISIBLE);
+                Bitmap background = BlurBuilder.blur(findViewById(R.id.container));
+                blurredBackground.setBackground(new BitmapDrawable(getResources(), background));
+                fam.setVisibility(View.VISIBLE);
+                isCached = true;
+            }
+            blurredBackground.setVisibility(View.VISIBLE);
+        }
+
+        if(isVisible)
+        {
+            findViewById(R.id.weatherFragment).setVisibility(View.VISIBLE);
+        }
     }
 }

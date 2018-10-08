@@ -5,6 +5,7 @@ Weather Music -WeatherMusicMainFragment.java
 This is the main engine of the code. It cuts up the JSONObject information into readable bits
 then loads those bits into textviews and displays the desired information.
  **/
+import android.app.Activity;
 import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.os.Handler;
@@ -31,6 +32,7 @@ public class WeatherMusicMainFragment extends Fragment
 {
     //Fonts for text, and weather icons
     Typeface weatherFont, TextViewFont;
+    int stormcode;
 
     //Views for information
     TextView cityField, updatedField, detailsField, currentTemperatureField, weatherIcon;
@@ -133,8 +135,9 @@ public class WeatherMusicMainFragment extends Fragment
             String time =  mdformat.format(calendar.getTime());
 
             int stormCode = details.getInt("id");
+            stormcode = stormCode;
 
-            IconHandler ih = new IconHandler();
+            IconHandler ih = new IconHandler(getActivity());
 
             cityField.setText(json.getString("name") + ", " + sys.getString("country"));
             detailsField.setText(details.getString("description").toUpperCase(Locale.US));
@@ -155,6 +158,6 @@ public class WeatherMusicMainFragment extends Fragment
     public void updateBackground(int code)
     {
         BackgroundCodeManager BCM = new BackgroundCodeManager();
-        BCM.chooseHandler(getActivity(), code);
+        BCM.chooseHandler(code, getActivity());
     }
 }

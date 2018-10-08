@@ -10,14 +10,15 @@ import android.renderscript.ScriptIntrinsicBlur;
 import android.view.View;
 
 public class BlurBuilder {
-    private static final float BITMAP_SCALE = 0.4f;
-    private static final float BLUR_RADIUS = 25f;
+    private static final float BITMAP_SCALE = 0.3f;
+    private static final float BLUR_RADIUS = 15f;
 
     public static Bitmap blur(View v) {
+
         return blur(v.getContext(), getScreenshot(v));
     }
 
-    private static Bitmap getScreenshot(View v) {
+    public static Bitmap getScreenshot(View v) {
         Bitmap b = Bitmap.createBitmap(v.getWidth(), v.getHeight(), Bitmap.Config.ARGB_8888);
         Canvas c = new Canvas(b);
         v.draw(c);

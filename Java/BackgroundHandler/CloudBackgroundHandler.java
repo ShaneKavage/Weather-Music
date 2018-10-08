@@ -7,45 +7,34 @@ import com.kavage.weathermusic.R;
 import com.kavage.weathermusic.TimeHandler.DayTime;
 import com.kavage.weathermusic.TimeHandler.TimeOfDay;
 
-public class CloudBackgroundHandler implements IsetBackground{
+public class CloudBackgroundHandler{
 
     public void setBackground(Activity act) {
 
-        View view = act.findViewById(R.id.container);
-        TimeOfDay time = new TimeOfDay();
+        View backgroundView = act.findViewById(R.id.container);
 
-        if(time.getTimeOfDay() ==  DayTime.LATENITE) { //Late Night/Very Early Morning
-            view.setBackgroundResource(R.drawable.cloudy_late_night);
-
-        }else if(time.getTimeOfDay() ==  DayTime.DAWN) { //Dawn
-            view.setBackgroundResource(R.drawable.cloudy_dawn);
-
-        }else if(time.getTimeOfDay() ==  DayTime.EARLYMORNING) { //Early Morning
-            view.setBackgroundResource(R.drawable.cloudy_early_morning);
-
-        }else if(time.getTimeOfDay() ==  DayTime.MORNING) { //Morning
-            view.setBackgroundResource(R.drawable.cloudy_morning);
-
-        }else if(time.getTimeOfDay() ==  DayTime.NOON) { //Noon
-            view.setBackgroundResource(R.drawable.cloudy_noon);
-
-        }else if(time.getTimeOfDay() ==  DayTime.AFTERNOON) { //Afternoon
-            view.setBackgroundResource(R.drawable.cloudy_afternoon);
-
-        }else if(time.getTimeOfDay() ==  DayTime.EVENING) { //Evening
-            view.setBackgroundResource(R.drawable.cloudy_evening);
-
-        }else if(time.getTimeOfDay() ==  DayTime.LATEEVENING) { //Late evening
-            view.setBackgroundResource(R.drawable.cloudy_late_evening);
-
-        }else if(time.getTimeOfDay() ==  DayTime.MIDNIGHT) { //Midnight
-            view.setBackgroundResource(R.drawable.cloudy_midnight);
-
-        }else if(time.getTimeOfDay() ==  DayTime.NIGHT) { //night
-            view.setBackgroundResource(R.drawable.cloudy_night);
-
+        if(TimeOfDay.getTimeOfDay() ==  DayTime.LATENITE) { //Late Night/Very Early Morning
+            backgroundView.setBackgroundResource(R.drawable.cloudy_late_night);
+        }else if(TimeOfDay.getTimeOfDay() ==  DayTime.DAWN) { //Dawn
+            backgroundView.setBackgroundResource(R.drawable.cloudy_dawn);
+        }else if(TimeOfDay.getTimeOfDay() ==  DayTime.EARLYMORNING) { //Early Morning
+            backgroundView.setBackgroundResource(R.drawable.cloudy_early_morning);
+        }else if(TimeOfDay.getTimeOfDay() ==  DayTime.MORNING) { //Morning
+            backgroundView.setBackgroundResource(R.drawable.cloudy_morning);
+        }else if(TimeOfDay.getTimeOfDay() ==  DayTime.NOON) { //Noon
+            backgroundView.setBackgroundResource(R.drawable.cloudy_noon);
+        }else if(TimeOfDay.getTimeOfDay() ==  DayTime.AFTERNOON) { //Afternoon
+            backgroundView.setBackgroundResource(R.drawable.cloudy_afternoon);
+        }else if(TimeOfDay.getTimeOfDay() ==  DayTime.EVENING) { //Evening
+            backgroundView.setBackgroundResource(R.drawable.cloudy_evening);
+        }else if(TimeOfDay.getTimeOfDay() ==  DayTime.LATEEVENING) { //Late evening
+            backgroundView.setBackgroundResource(R.drawable.cloudy_late_evening);
+        }else if(TimeOfDay.getTimeOfDay() ==  DayTime.MIDNIGHT) { //Midnight
+            backgroundView.setBackgroundResource(R.drawable.cloudy_midnight);
+        }else if(TimeOfDay.getTimeOfDay() ==  DayTime.NIGHT) { //night
+            backgroundView.setBackgroundResource(R.drawable.cloudy_night);
         }else { //Error
-            view.setBackgroundResource(R.drawable.other);
+            backgroundView.setBackgroundResource(R.drawable.other);
         }
     }//Enc chooseCloudBackground()
 }

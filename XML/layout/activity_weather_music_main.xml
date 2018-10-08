@@ -15,6 +15,15 @@
         android:gravity="top|center"
         android:textAlignment="center" />
 
+    <ImageView
+        android:id="@+id/blurView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:adjustViewBounds="false"
+        android:background="@drawable/blur"
+        android:cropToPadding="false"
+        android:visibility="visible" />
+
     <fragment
         android:id="@+id/weatherFragment"
         android:name="com.kavage.weathermusic.WeatherMusicMainFragment"
@@ -30,15 +39,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.235" />
 
-    <ImageView
-        android:id="@+id/blurView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:adjustViewBounds="false"
-        android:background="@drawable/blur"
-        android:cropToPadding="false"
-        android:visibility="visible" />
-
     <com.github.clans.fab.FloatingActionMenu
         android:id="@+id/floatingActionMenu"
         android:layout_width="match_parent"
@@ -48,12 +48,15 @@
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:foregroundGravity="bottom|right"
+        app:menu_backgroundColor="#00ccdfff"
         android:paddingBottom="@dimen/fab_margin"
         android:paddingEnd="@dimen/fab_margin"
         android:soundEffectsEnabled="true"
         app:menu_colorNormal="@color/FAMcolor"
         app:menu_colorPressed="@color/FAMpressed"
         app:menu_fab_label="Actions"
+        app:menu_labels_showAnimation="@anim/fab_slide_in_from_right"
+        app:menu_labels_hideAnimation="@anim/fab_slide_out_to_right"
         app:menu_icon="@drawable/menuicon"
         app:menu_labels_ellipsize="marquee"
         app:menu_labels_position="left"

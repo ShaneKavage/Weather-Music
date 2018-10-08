@@ -7,45 +7,34 @@ import com.kavage.weathermusic.R;
 import com.kavage.weathermusic.TimeHandler.DayTime;
 import com.kavage.weathermusic.TimeHandler.TimeOfDay;
 
-public class SnowBackgroundHandler implements IsetBackground{
+public class SnowBackgroundHandler{
 
     public void setBackground(Activity act) {
 
-        View view = act.findViewById(R.id.container);
-        TimeOfDay time = new TimeOfDay();
+        View BackgroundView = act.findViewById(R.id.container);
 
-        if(time.getTimeOfDay() ==  DayTime.LATENITE) { //Late Night/Very Early Morning
-            view.setBackgroundResource(R.drawable.snow_late_night);
-
-        }else if(time.getTimeOfDay() ==  DayTime.DAWN) { //Dawn
-            view.setBackgroundResource(R.drawable.snow_dawn);
-
-        }else if(time.getTimeOfDay() ==  DayTime.EARLYMORNING) { //Early Morning
-            view.setBackgroundResource(R.drawable.snow_early_morning);
-
-        }else if(time.getTimeOfDay() ==  DayTime.MORNING) { //Morning
-            view.setBackgroundResource(R.drawable.snow_morning);
-
-        }else if(time.getTimeOfDay() ==  DayTime.NOON) { //Noon
-            view.setBackgroundResource(R.drawable.snow_noon);
-
-        }else if(time.getTimeOfDay() ==  DayTime.AFTERNOON) { //Afternoon
-            view.setBackgroundResource(R.drawable.snow_afternoon);
-
-        }else if(time.getTimeOfDay() ==  DayTime.EVENING) { //Evening
-            view.setBackgroundResource(R.drawable.snow_evening);
-
-        }else if(time.getTimeOfDay() ==  DayTime.LATEEVENING) { //Late evening
-            view.setBackgroundResource(R.drawable.snow_late_evening);
-
-        }else if(time.getTimeOfDay() ==  DayTime.MIDNIGHT) { //Midnight
-            view.setBackgroundResource(R.drawable.snow_midnight);
-
-        }else if(time.getTimeOfDay() ==  DayTime.NIGHT) { //night
-            view.setBackgroundResource(R.drawable.snow_night);
-
+        if(TimeOfDay.getTimeOfDay() ==  DayTime.LATENITE) { //Late Night/Very Early Morning
+            BackgroundView.setBackgroundResource(R.drawable.snow_late_night);
+        }else if(TimeOfDay.getTimeOfDay() ==  DayTime.DAWN) { //Dawn
+            BackgroundView.setBackgroundResource(R.drawable.snow_dawn);
+        }else if(TimeOfDay.getTimeOfDay() ==  DayTime.EARLYMORNING) { //Early Morning
+            BackgroundView.setBackgroundResource(R.drawable.snow_early_morning);
+        }else if(TimeOfDay.getTimeOfDay() ==  DayTime.MORNING) { //Morning
+            BackgroundView.setBackgroundResource(R.drawable.snow_morning);
+        }else if(TimeOfDay.getTimeOfDay() ==  DayTime.NOON) { //Noon
+            BackgroundView.setBackgroundResource(R.drawable.snow_noon);
+        }else if(TimeOfDay.getTimeOfDay() ==  DayTime.AFTERNOON) { //Afternoon
+            BackgroundView.setBackgroundResource(R.drawable.snow_afternoon);
+        }else if(TimeOfDay.getTimeOfDay() ==  DayTime.EVENING) { //Evening
+            BackgroundView.setBackgroundResource(R.drawable.snow_evening);
+        }else if(TimeOfDay.getTimeOfDay() ==  DayTime.LATEEVENING) { //Late evening
+            BackgroundView.setBackgroundResource(R.drawable.snow_late_evening);
+        }else if(TimeOfDay.getTimeOfDay() ==  DayTime.MIDNIGHT) { //Midnight
+            BackgroundView.setBackgroundResource(R.drawable.snow_midnight);
+        }else if(TimeOfDay.getTimeOfDay() ==  DayTime.NIGHT) { //night
+            BackgroundView.setBackgroundResource(R.drawable.snow_night);
         }else { //Error
-            view.setBackgroundResource(R.drawable.other);
+            BackgroundView.setBackgroundResource(R.drawable.other);
         }
     }//End chooseSnowBackground()
 }

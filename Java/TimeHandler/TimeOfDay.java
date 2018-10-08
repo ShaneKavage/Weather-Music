@@ -4,7 +4,7 @@ import java.util.Calendar;
 
 public class TimeOfDay
 {
-    public DayTime getTimeOfDay()
+    public static DayTime getTimeOfDay()
     {
         Calendar c = Calendar.getInstance();
         int CurHour = c.get(Calendar.HOUR_OF_DAY);
@@ -42,6 +42,13 @@ public class TimeOfDay
         }else {
             return DayTime.ERROR;
         }
+    }
+
+    public static int returnHourOfDay()
+    {
+        Calendar c = Calendar.getInstance();
+        int CurHour = c.get(Calendar.HOUR_OF_DAY);
+        return CurHour;
     }
 
 }
