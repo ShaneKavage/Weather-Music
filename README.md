@@ -11,23 +11,21 @@ It should run from there.
 
 ## Features
 0. Floating Action Menu with automatic Guassian blur builder:
-  1. Select city FAB.
-  2. Show/hide weather FAB.
-  3. Refresh FAB.
+1. Select city FAB.
+2. Show/hide weather FAB.
+3. Refresh FAB.
 4. Automatic Background selector.
+5. Music for each hour that loops properly.
+6. Mute button FAB to mute music.
+7. Threading/multithreading for blur builder.
 
 ## Planned Features
-1. Music for each hour that loops properly.
-2. Mute button FAB to mute music.
 3. Special effects based on weather conditions.
 4. Effects button FAB to hide effects.
 5. 5/7 day forecast.
-6. Threading/multithreading for blur builder.
 
 ## Built With
 ..* Android Studio
-
-## Version
 
 ## Author(s)
 ..* Shane Kavage - Initial Work
@@ -35,6 +33,7 @@ It should run from there.
 ## License
 
 ## Acknowledgements
-..* Images currently used are temporary. I do not claim them as my own and will remove them upon request of the creator. They are placeholders during development.
+..* Images currently used are not my own. I do not claim them as my own and will remove them upon request of the creator. There is no profit being made from this application.
 ..* Thanks to (FIND Blur Builder guy) for the blur builder code.
 ..* Thanks to Animal Crossing for inspiring this idea.
+..* Thanks to Nintendo - Currently using their music from animal crossing in the app. Will be removed upon request as well, I do not claim them as my own.
